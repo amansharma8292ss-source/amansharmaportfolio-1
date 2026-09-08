@@ -12,12 +12,12 @@ import {
   MapPin,
   Award,
   ArrowRight,
-  Download,
+  
   CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
 import profile from "@/assets/aman-profile.jpg.asset.json";
-import resume from "@/assets/resume.pdf.asset.json";
+
 import { Nav } from "@/components/portfolio/Nav";
 
 export const Route = createFileRoute("/")({
@@ -221,14 +221,8 @@ function Index() {
               >
                 View my work <ArrowRight className="h-4 w-4" />
               </a>
-              <a
-                href={resume.url}
-                download
-                className="inline-flex items-center gap-2 rounded-lg border border-primary-foreground/35 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-              >
-                <Download className="h-4 w-4" /> Download resume
-              </a>
             </div>
+
           </div>
           <div className="relative mx-auto w-full max-w-sm">
             <div className="overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-2xl">
