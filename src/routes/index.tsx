@@ -212,8 +212,10 @@ function Index() {
               Data Analyst · Business Intelligence Specialist · SQL &amp; Power BI Expert
             </h1>
             <p className="mt-5 max-w-xl text-lg text-primary-foreground/85">
-              Transforming raw data into actionable business insights.
+              Transforming raw data into actionable business insights. Available for freelance
+              projects and full-time roles.
             </p>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#projects"
@@ -373,8 +375,10 @@ function Index() {
           <div className="min-w-0">
             <SectionTitle eyebrow="Get in touch" title="Let's Work Together" />
             <p className="-mt-6 text-muted-foreground">
-              Open to Data Analyst and BI roles across Portugal, Luxembourg and Switzerland.
+              Open to Data Analyst and BI roles — including freelance projects — across Portugal,
+              Luxembourg and Switzerland.
             </p>
+
             <ul className="mt-8 space-y-4 text-sm">
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-accent" />
@@ -415,8 +419,10 @@ function Index() {
           <div>
             <p className="text-lg font-semibold">Aman Sharma</p>
             <p className="mt-2 text-sm text-primary-foreground/75">
-              Open to opportunities in Portugal, Luxembourg, and Switzerland.
+              Open to opportunities and freelance projects in Portugal, Luxembourg, and
+              Switzerland.
             </p>
+
           </div>
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
