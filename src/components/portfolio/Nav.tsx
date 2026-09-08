@@ -67,7 +67,7 @@ export function Nav() {
           onClick={() => setOpen((v) => !v)}
           className={`shrink-0 md:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
         >
-          {open ? <Menu className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </nav>
 
