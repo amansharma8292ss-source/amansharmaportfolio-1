@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
-import resume from "@/assets/resume.pdf.asset.json";
+
 
 const links = [
   { href: "#about", label: "About" },
@@ -52,13 +52,6 @@ export function Nav() {
               {l.label}
             </a>
           ))}
-          <a
-            href={resume.url}
-            download
-            className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-foreground transition-opacity hover:opacity-90"
-          >
-            Resume
-          </a>
         </div>
 
         <button
@@ -84,13 +77,6 @@ export function Nav() {
                 {l.label}
               </a>
             ))}
-            <a
-              href={resume.url}
-              download
-              className="mt-2 rounded-lg bg-accent px-4 py-2 text-center text-sm font-semibold text-accent-foreground"
-            >
-              Download Resume
-            </a>
           </div>
         </div>
       )}

@@ -12,12 +12,12 @@ import {
   MapPin,
   Award,
   ArrowRight,
-  Download,
+  
   CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
 import profile from "@/assets/aman-profile.jpg.asset.json";
-import resume from "@/assets/resume.pdf.asset.json";
+
 import { Nav } from "@/components/portfolio/Nav";
 
 export const Route = createFileRoute("/")({
@@ -212,8 +212,10 @@ function Index() {
               Data Analyst · Business Intelligence Specialist · SQL &amp; Power BI Expert
             </h1>
             <p className="mt-5 max-w-xl text-lg text-primary-foreground/85">
-              Transforming raw data into actionable business insights.
+              Transforming raw data into actionable business insights. Available for freelance
+              projects and full-time roles.
             </p>
+
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#projects"
@@ -221,14 +223,8 @@ function Index() {
               >
                 View my work <ArrowRight className="h-4 w-4" />
               </a>
-              <a
-                href={resume.url}
-                download
-                className="inline-flex items-center gap-2 rounded-lg border border-primary-foreground/35 px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary-foreground/10"
-              >
-                <Download className="h-4 w-4" /> Download resume
-              </a>
             </div>
+
           </div>
           <div className="relative mx-auto w-full max-w-sm">
             <div className="overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-2xl">
@@ -379,8 +375,10 @@ function Index() {
           <div className="min-w-0">
             <SectionTitle eyebrow="Get in touch" title="Let's Work Together" />
             <p className="-mt-6 text-muted-foreground">
-              Open to Data Analyst and BI roles across Portugal, Luxembourg and Switzerland.
+              Open to Data Analyst and BI roles — including freelance projects — across Portugal,
+              Luxembourg and Switzerland.
             </p>
+
             <ul className="mt-8 space-y-4 text-sm">
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-accent" />
@@ -421,8 +419,10 @@ function Index() {
           <div>
             <p className="text-lg font-semibold">Aman Sharma</p>
             <p className="mt-2 text-sm text-primary-foreground/75">
-              Open to opportunities in Portugal, Luxembourg, and Switzerland.
+              Open to opportunities and freelance projects in Portugal, Luxembourg, and
+              Switzerland.
             </p>
+
           </div>
           <div>
             <p className="text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
