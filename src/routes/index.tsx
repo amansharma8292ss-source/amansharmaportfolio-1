@@ -13,8 +13,28 @@ import {
   Award,
   ArrowRight,
   CheckCircle2,
+  TrendingUp,
+  Users,
+  Gauge,
+  Activity,
 } from "lucide-react";
 import { toast } from "sonner";
+import {
+  ResponsiveContainer,
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  AreaChart,
+  Area,
+  PieChart,
+  Pie,
+  Cell,
+  RadialBarChart,
+  RadialBar,
+} from "recharts";
 const profile = "/profile_2.jpg";
 
 import { Nav } from "@/components/portfolio/Nav";
@@ -118,6 +138,62 @@ const achievements = [
   { value: "40%", label: "Reduction in report generation time" },
 ];
 
+const skillProficiency = [
+  { name: "Power BI", value: 92, fill: "var(--chart-1)" },
+  { name: "SQL", value: 88, fill: "var(--chart-2)" },
+  { name: "Excel", value: 95, fill: "var(--chart-3)" },
+  { name: "Tableau", value: 70, fill: "var(--chart-4)" },
+];
+
+const projectImpactData = [
+  { project: "Deloitte", impact: 15 },
+  { project: "TATA", impact: 40 },
+  { project: "MySQL", impact: 30 },
+];
+
+const queryPerformanceData = [
+  { month: "Jan", queries: 120, optimized: 45 },
+  { month: "Feb", queries: 150, optimized: 60 },
+  { month: "Mar", queries: 180, optimized: 78 },
+  { month: "Apr", queries: 200, optimized: 92 },
+  { month: "May", queries: 230, optimized: 110 },
+  { month: "Jun", queries: 260, optimized: 135 },
+];
+
+const toolDistribution = [
+  { name: "Power BI", value: 35, fill: "var(--chart-1)" },
+  { name: "SQL", value: 28, fill: "var(--chart-2)" },
+  { name: "Excel", value: 22, fill: "var(--chart-3)" },
+  { name: "Python", value: 15, fill: "var(--chart-4)" },
+];
+
+const dashboardStats = [
+  {
+    icon: BarChart3,
+    label: "Dashboards Built",
+    value: "15+",
+    sublabel: "Interactive Power BI reports",
+  },
+  {
+    icon: Database,
+    label: "Queries Optimized",
+    value: "50+",
+    sublabel: "30% avg performance gain",
+  },
+  {
+    icon: TrendingUp,
+    label: "Cost Reduction",
+    value: "15%",
+    sublabel: "Deloitte simulation result",
+  },
+  {
+    icon: Gauge,
+    label: "Time Saved",
+    value: "40%",
+    sublabel: "Faster report generation",
+  },
+];
+
 function Portrait() {
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
@@ -134,7 +210,7 @@ function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
     <div className="mb-12 max-w-2xl">
       <p className="text-sm font-semibold uppercase tracking-[0.2em] text-accent">{eyebrow}</p>
-      <h2 className="mt-3 text-3xl font-bold tracking-tight text-primary sm:text-4xl">{title}</h2>
+      <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">{title}</h2>
     </div>
   );
 }
@@ -167,7 +243,7 @@ function ContactForm() {
           <input
             name="name"
             maxLength={100}
-            className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-accent"
+            className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-accent"
             placeholder="Your name"
           />
         </label>
@@ -177,7 +253,7 @@ function ContactForm() {
             name="email"
             type="email"
             maxLength={255}
-            className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-accent"
+            className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-accent"
             placeholder="you@company.com"
           />
         </label>
@@ -188,7 +264,7 @@ function ContactForm() {
           name="message"
           rows={5}
           maxLength={1000}
-          className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm outline-none focus:border-accent"
+          className="mt-2 w-full rounded-lg border border-input bg-background px-3 py-2.5 text-sm text-foreground outline-none focus:border-accent"
           placeholder="Tell me about the role or project…"
         />
       </label>
@@ -207,6 +283,242 @@ function ContactForm() {
   );
 }
 
+function DashboardSection() {
+  return (
+    <section id="dashboard" className="bg-surface py-20 sm:py-24">
+      <div className="mx-auto max-w-6xl px-5">
+        <SectionTitle eyebrow="Live Demo" title="Data Analytics Dashboard" />
+        <p className="-mt-6 mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          A snapshot of the kind of interactive dashboards I build — turning raw operational data
+          into clear, actionable metrics for decision-makers.
+        </p>
+
+        {/* KPI Cards */}
+        <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {dashboardStats.map((s) => (
+            <div
+              key={s.label}
+              className="card-elevated rounded-2xl border border-border bg-card p-6"
+            >
+              <div className="flex items-center justify-between">
+                <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary">
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <Activity className="h-4 w-4 text-muted-foreground" />
+              </div>
+              <p className="mt-4 text-3xl font-bold text-foreground">{s.value}</p>
+              <p className="mt-1 text-sm font-medium text-foreground">{s.label}</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">{s.sublabel}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Charts Grid */}
+        <div className="grid gap-6 lg:grid-cols-3">
+          {/* Query Performance Trend */}
+          <div className="card-elevated rounded-2xl border border-border bg-card p-6 lg:col-span-2">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Query Performance Trend</h3>
+                <p className="text-sm text-muted-foreground">Monthly queries vs. optimized</p>
+              </div>
+              <TrendingUp className="h-5 w-5 text-accent" />
+            </div>
+            <ResponsiveContainer width="100%" height={260}>
+              <AreaChart data={queryPerformanceData}>
+                <defs>
+                  <linearGradient id="gradQueries" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--chart-1)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--chart-1)" stopOpacity={0} />
+                  </linearGradient>
+                  <linearGradient id="gradOptimized" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="var(--chart-2)" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="var(--chart-2)" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                <XAxis
+                  dataKey="month"
+                  stroke="var(--muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="var(--muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "var(--card)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "0.75rem",
+                    color: "var(--foreground)",
+                  }}
+                  labelStyle={{ color: "var(--foreground)" }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="queries"
+                  stroke="var(--chart-1)"
+                  strokeWidth={2}
+                  fill="url(#gradQueries)"
+                  name="Total Queries"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="optimized"
+                  stroke="var(--chart-2)"
+                  strokeWidth={2}
+                  fill="url(#gradOptimized)"
+                  name="Optimized"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Tool Distribution Pie */}
+          <div className="card-elevated rounded-2xl border border-border bg-card p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Tool Usage</h3>
+                <p className="text-sm text-muted-foreground">Distribution by tool</p>
+              </div>
+              <Users className="h-5 w-5 text-accent" />
+            </div>
+            <ResponsiveContainer width="100%" height={260}>
+              <PieChart>
+                <Pie
+                  data={toolDistribution}
+                  cx="50%"
+                  cy="50%"
+                  innerRadius={50}
+                  outerRadius={85}
+                  paddingAngle={3}
+                  dataKey="value"
+                >
+                  {toolDistribution.map((entry) => (
+                    <Cell key={entry.name} fill={entry.fill} stroke="var(--card)" strokeWidth={2} />
+                  ))}
+                </Pie>
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "var(--card)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "0.75rem",
+                    color: "var(--foreground)",
+                  }}
+                />
+              </PieChart>
+            </ResponsiveContainer>
+            <div className="mt-3 flex flex-wrap gap-3">
+              {toolDistribution.map((t) => (
+                <div key={t.name} className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <span
+                    className="h-2.5 w-2.5 rounded-full"
+                    style={{ backgroundColor: t.fill }}
+                  />
+                  {t.name}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Project Impact Bar Chart */}
+          <div className="card-elevated rounded-2xl border border-border bg-card p-6">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Project Impact</h3>
+                <p className="text-sm text-muted-foreground">Improvement percentage</p>
+              </div>
+              <BarChart3 className="h-5 w-5 text-accent" />
+            </div>
+            <ResponsiveContainer width="100%" height={260}>
+              <BarChart data={projectImpactData}>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+                <XAxis
+                  dataKey="project"
+                  stroke="var(--muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <YAxis
+                  stroke="var(--muted-foreground)"
+                  fontSize={12}
+                  tickLine={false}
+                  axisLine={false}
+                />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "var(--card)",
+                    border: "1px solid var(--border)",
+                    borderRadius: "0.75rem",
+                    color: "var(--foreground)",
+                  }}
+                  cursor={{ fill: "var(--muted)", fillOpacity: 0.3 }}
+                />
+                <Bar
+                  dataKey="impact"
+                  fill="var(--chart-1)"
+                  radius={[8, 8, 0, 0]}
+                  name="Impact %"
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Skill Proficiency Radial */}
+          <div className="card-elevated rounded-2xl border border-border bg-card p-6 lg:col-span-2">
+            <div className="mb-4 flex items-center justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-foreground">Skill Proficiency</h3>
+                <p className="text-sm text-muted-foreground">Self-assessed competency levels</p>
+              </div>
+              <Gauge className="h-5 w-5 text-accent" />
+            </div>
+            <div className="flex flex-col items-center gap-6 sm:flex-row">
+              <ResponsiveContainer width="100%" height={220}>
+                <RadialBarChart
+                  innerRadius="25%"
+                  outerRadius="100%"
+                  data={skillProficiency}
+                  startAngle={90}
+                  endAngle={-270}
+                >
+                  <RadialBar dataKey="value" cornerRadius={8} background={{ fill: "var(--muted)" }} />
+                  <Tooltip
+                    contentStyle={{
+                      backgroundColor: "var(--card)",
+                      border: "1px solid var(--border)",
+                      borderRadius: "0.75rem",
+                      color: "var(--foreground)",
+                    }}
+                  />
+                </RadialBarChart>
+              </ResponsiveContainer>
+              <div className="flex flex-col gap-3">
+                {skillProficiency.map((s) => (
+                  <div key={s.name} className="flex items-center gap-3">
+                    <span
+                      className="h-3 w-3 rounded-full"
+                      style={{ backgroundColor: s.fill }}
+                    />
+                    <span className="text-sm font-medium text-foreground">{s.name}</span>
+                    <span className="text-sm text-muted-foreground">{s.value}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Index() {
   return (
     <div id="top" className="bg-background">
@@ -216,13 +528,13 @@ function Index() {
       <section className="hero-gradient relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-36">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="min-w-0">
-            <p className="inline-flex rounded-full border border-primary-foreground/25 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-primary-foreground/85">
+            <p className="inline-flex rounded-full border border-foreground/25 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85">
               Based in Lisbon, Portugal · EU Work Authorized
             </p>
-            <h1 className="mt-6 text-3xl font-bold leading-tight tracking-tight text-primary-foreground sm:text-5xl">
+            <h1 className="mt-6 text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
               Data Analyst · Business Intelligence Specialist · SQL &amp; Power BI Expert
             </h1>
-            <p className="mt-5 max-w-xl text-lg text-primary-foreground/85">
+            <p className="mt-5 max-w-xl text-lg text-foreground/85">
               Transforming raw data into actionable business insights. Available for freelance
               projects and full-time roles.
             </p>
@@ -234,8 +546,13 @@ function Index() {
               >
                 View my work <ArrowRight className="h-4 w-4" />
               </a>
+              <a
+                href="#dashboard"
+                className="inline-flex items-center gap-2 rounded-lg border border-foreground/25 px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-foreground/10"
+              >
+                View dashboard <BarChart3 className="h-4 w-4" />
+              </a>
             </div>
-
           </div>
           <Portrait />
         </div>
@@ -287,7 +604,7 @@ function Index() {
                 <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary text-primary-foreground">
                   <s.icon className="h-5 w-5" />
                 </div>
-                <h3 className="mt-5 text-lg font-semibold text-primary">{s.title}</h3>
+                <h3 className="mt-5 text-lg font-semibold text-foreground">{s.title}</h3>
                 <ul className="mt-3 space-y-2">
                   {s.items.map((i) => (
                     <li key={i} className="flex gap-2 text-sm text-muted-foreground">
@@ -313,7 +630,7 @@ function Index() {
                 className="card-elevated rounded-2xl border border-border bg-card p-7"
               >
                 <Award className="h-7 w-7 text-accent" />
-                <h3 className="mt-5 text-lg font-semibold text-primary">{c.title}</h3>
+                <h3 className="mt-5 text-lg font-semibold text-foreground">{c.title}</h3>
                 <p className="mt-1 text-sm font-medium text-accent">{c.date}</p>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.description}</p>
               </div>
@@ -329,7 +646,7 @@ function Index() {
           <div className="grid gap-6 lg:grid-cols-3">
             {projects.map((p) => (
               <article key={p.title} className="card-elevated rounded-2xl bg-card p-7">
-                <h3 className="text-xl font-semibold text-primary">{p.title}</h3>
+                <h3 className="text-xl font-semibold text-foreground">{p.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   {p.tags.map((t) => (
@@ -347,14 +664,17 @@ function Index() {
         </div>
       </section>
 
+      {/* DASHBOARD */}
+      <DashboardSection />
+
       {/* ACHIEVEMENTS */}
       <section id="achievements" className="hero-gradient py-20 sm:py-24">
         <div className="mx-auto max-w-6xl px-5">
           <div className="mb-12 max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary-foreground/70">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-foreground/70">
               Impact
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
               What I&apos;ve Accomplished
             </h2>
           </div>
@@ -362,10 +682,10 @@ function Index() {
             {achievements.map((a) => (
               <div
                 key={a.label}
-                className="rounded-2xl border border-primary-foreground/15 bg-primary-foreground/5 p-7"
+                className="rounded-2xl border border-foreground/15 bg-foreground/5 p-7"
               >
-                <p className="text-4xl font-bold text-primary-foreground">{a.value}</p>
-                <p className="mt-2 text-sm text-primary-foreground/80">{a.label}</p>
+                <p className="text-4xl font-bold text-foreground">{a.value}</p>
+                <p className="mt-2 text-sm text-foreground/80">{a.label}</p>
               </div>
             ))}
           </div>
@@ -385,13 +705,13 @@ function Index() {
             <ul className="mt-8 space-y-4 text-sm">
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 shrink-0 text-accent" />
-                <a href="mailto:amansharma8292ss@gmail.com" className="break-all hover:text-accent">
+                <a href="mailto:amansharma8292ss@gmail.com" className="break-all text-foreground hover:text-accent">
                   amansharma8292ss@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-5 w-5 shrink-0 text-accent" />
-                <a href="tel:+351931131294" className="hover:text-accent">
+                <a href="tel:+351931131294" className="text-foreground hover:text-accent">
                   +351 931 131 294
                 </a>
               </li>
@@ -401,14 +721,14 @@ function Index() {
                   href="https://linkedin.com/in/aman-sharma-data"
                   target="_blank"
                   rel="noreferrer"
-                  className="break-all hover:text-accent"
+                  className="break-all text-foreground hover:text-accent"
                 >
                   linkedin.com/in/aman-sharma-data
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="h-5 w-5 shrink-0 text-accent" />
-                Lisbon, Portugal
+                <span className="text-foreground">Lisbon, Portugal</span>
               </li>
             </ul>
           </div>
@@ -417,29 +737,28 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-primary py-12 text-primary-foreground">
+      <footer className="border-t border-border bg-card py-12 text-foreground">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 sm:grid-cols-2 lg:grid-cols-3">
           <div>
-            <p className="text-lg font-semibold">Aman Sharma</p>
-            <p className="mt-2 text-sm text-primary-foreground/75">
+            <p className="text-lg font-semibold text-foreground">Aman Sharma</p>
+            <p className="mt-2 text-sm text-muted-foreground">
               Open to opportunities and freelance projects all over the world.
             </p>
-
           </div>
           <div>
-            <p className="text-sm font-semibold uppercase tracking-widest text-primary-foreground/60">
+            <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
               Quick links
             </p>
-            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-primary-foreground/80">
-              {["about", "skills", "certifications", "projects", "contact"].map((id) => (
-                <a key={id} href={`#${id}`} className="capitalize hover:text-primary-foreground">
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+              {["about", "skills", "certifications", "projects", "dashboard", "contact"].map((id) => (
+                <a key={id} href={`#${id}`} className="capitalize text-foreground hover:text-accent">
                   {id}
                 </a>
               ))}
             </div>
           </div>
           <div className="flex items-start gap-4">
-            <a href="mailto:amansharma8292ss@gmail.com" aria-label="Email Aman">
+            <a href="mailto:amansharma8292ss@gmail.com" aria-label="Email Aman" className="text-muted-foreground hover:text-accent">
               <Mail className="h-5 w-5" />
             </a>
             <a
@@ -447,15 +766,16 @@ function Index() {
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn profile"
+              className="text-muted-foreground hover:text-accent"
             >
               <Linkedin className="h-5 w-5" />
             </a>
-            <a href="tel:+351931131294" aria-label="Call Aman">
+            <a href="tel:+351931131294" aria-label="Call Aman" className="text-muted-foreground hover:text-accent">
               <Phone className="h-5 w-5" />
             </a>
           </div>
         </div>
-        <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-primary-foreground/60">
+        <p className="mx-auto mt-10 max-w-6xl px-5 text-xs text-muted-foreground">
           © {new Date().getFullYear()} Aman Sharma. All rights reserved.
         </p>
       </footer>

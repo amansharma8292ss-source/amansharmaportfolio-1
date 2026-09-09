@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
-
 const links = [
   { href: "#about", label: "About" },
   { href: "#skills", label: "Skills" },
   { href: "#certifications", label: "Certifications" },
   { href: "#projects", label: "Projects" },
+  { href: "#dashboard", label: "Dashboard" },
   { href: "#achievements", label: "Achievements" },
   { href: "#contact", label: "Contact" },
 ];
@@ -25,7 +25,9 @@ export function Nav() {
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors ${
-        scrolled ? "border-b border-border bg-background/90 backdrop-blur" : "bg-transparent"
+        scrolled
+          ? "border-b border-border bg-background/90 backdrop-blur"
+          : "border-b border-transparent bg-background/40 backdrop-blur-sm"
       }`}
     >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-5">
@@ -33,9 +35,7 @@ export function Nav() {
           <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-primary font-bold text-primary-foreground">
             AS
           </span>
-          <span
-            className={`truncate text-sm font-semibold ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
-          >
+          <span className="truncate text-sm font-semibold text-foreground">
             Aman Sharma
           </span>
         </a>
@@ -45,9 +45,7 @@ export function Nav() {
             <a
               key={l.href}
               href={l.href}
-              className={`text-sm font-medium transition-colors hover:text-accent ${
-                scrolled ? "text-muted-foreground" : "text-primary-foreground/85"
-              }`}
+              className="text-sm font-medium text-muted-foreground transition-colors hover:text-accent"
             >
               {l.label}
             </a>
@@ -58,7 +56,7 @@ export function Nav() {
           type="button"
           aria-label="Toggle menu"
           onClick={() => setOpen((v) => !v)}
-          className={`shrink-0 md:hidden ${scrolled ? "text-foreground" : "text-primary-foreground"}`}
+          className="shrink-0 text-foreground md:hidden"
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
