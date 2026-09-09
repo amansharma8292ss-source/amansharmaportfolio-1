@@ -463,8 +463,8 @@ function Index() {
           <div className="min-w-0">
             <SectionTitle eyebrow="Get in touch" title="Let's Work Together" />
             <p className="-mt-6 text-muted-foreground">
-              Open to Data Analyst and BI roles — including freelance projects — across Portugal,
-              Luxembourg and Switzerland.
+              Open to Data Analyst and BI roles — including freelance projects — all over the
+              world.
             </p>
 
             <ul className="mt-8 space-y-4 text-sm">
@@ -507,8 +507,7 @@ function Index() {
           <div>
             <p className="text-lg font-semibold">Aman Sharma</p>
             <p className="mt-2 text-sm text-primary-foreground/75">
-              Open to opportunities and freelance projects in Portugal, Luxembourg, and
-              Switzerland.
+              Open to opportunities and freelance projects all over the world.
             </p>
 
           </div>
