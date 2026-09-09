@@ -17,7 +17,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
-import profile from "@/assets/aman-profile.jpg.asset.json";
+const profile = "/profile_2.jpg";
 
 import { Nav } from "@/components/portfolio/Nav";
 
@@ -195,7 +195,7 @@ function SpeakingPortrait() {
         className="group relative block w-full cursor-pointer overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-2xl transition-transform hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       >
         <img
-          src={profile.url}
+          src={profile}
           alt="Aman Sharma, data analyst, in a navy blazer"
           className="aspect-[4/5] w-full object-cover"
         />
@@ -331,7 +331,7 @@ function Index() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="overflow-hidden rounded-2xl bg-surface">
             <img
-              src={profile.url}
+              src={profile}
               alt="Portrait of Aman Sharma"
               loading="lazy"
               className="aspect-[4/5] w-full object-cover"
