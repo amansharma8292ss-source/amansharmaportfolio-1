@@ -12,7 +12,8 @@ import {
   MapPin,
   Award,
   ArrowRight,
-  
+  Volume2,
+  VolumeX,
   CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
