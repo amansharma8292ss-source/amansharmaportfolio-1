@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import {
   BarChart3,
   Database,
@@ -125,16 +125,12 @@ const INTRO_SPEECH =
 
 function SpeakingPortrait() {
   const [speaking, setSpeaking] = useState(false);
+  const attemptedRef = useRef(false);
 
-  function toggleSpeech() {
+  function speak() {
     const synth = window.speechSynthesis;
     if (!synth) {
       toast.error("Your browser doesn't support speech.");
-      return;
-    }
-    if (speaking) {
-      synth.cancel();
-      setSpeaking(false);
       return;
     }
     const utterance = new SpeechSynthesisUtterance(INTRO_SPEECH);
@@ -146,6 +142,46 @@ function SpeakingPortrait() {
     synth.speak(utterance);
     setSpeaking(true);
   }
+
+  function toggleSpeech() {
+    if (speaking) {
+      window.speechSynthesis?.cancel();
+      setSpeaking(false);
+      return;
+    }
+    speak();
+  }
+
+  // Auto-play the introduction when a visitor lands on the page.
+  // If the browser blocks speech until a user gesture, play on the
+  // visitor's first tap/click/key press anywhere on the page instead.
+  useEffect(() => {
+    if (attemptedRef.current) return;
+    attemptedRef.current = true;
+
+    const trySpeak = () => {
+      if (!window.speechSynthesis) return;
+      speak();
+      // If speech was blocked (nothing started), wait for first gesture.
+      window.setTimeout(() => {
+        if (!window.speechSynthesis.speaking) {
+          const onFirstGesture = () => {
+            speak();
+            window.removeEventListener("pointerdown", onFirstGesture);
+            window.removeEventListener("keydown", onFirstGesture);
+          };
+          window.addEventListener("pointerdown", onFirstGesture);
+          window.addEventListener("keydown", onFirstGesture);
+        }
+      }, 400);
+    };
+
+    const timer = window.setTimeout(trySpeak, 600);
+    return () => {
+      window.clearTimeout(timer);
+      window.speechSynthesis?.cancel();
+    };
+  }, []);
 
   return (
     <div className="relative mx-auto w-full max-w-sm">
