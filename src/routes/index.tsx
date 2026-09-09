@@ -284,15 +284,7 @@ function Index() {
             </div>
 
           </div>
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-2xl">
-              <img
-                src={profile.url}
-                alt="Aman Sharma, data analyst, in a navy blazer"
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
-          </div>
+          <SpeakingPortrait />
         </div>
       </section>
 
