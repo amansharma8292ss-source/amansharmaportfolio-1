@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import {
   BarChart3,
   Database,
@@ -12,8 +12,6 @@ import {
   MapPin,
   Award,
   ArrowRight,
-  Volume2,
-  VolumeX,
   CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -120,97 +118,14 @@ const achievements = [
   { value: "40%", label: "Reduction in report generation time" },
 ];
 
-function SpeakingPortrait() {
-  const [speaking, setSpeaking] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  function getAudio(): HTMLAudioElement {
-    if (!audioRef.current) {
-      const audio = new Audio("/api/public/intro-audio");
-      audio.preload = "auto";
-      audio.onended = () => setSpeaking(false);
-      audio.onerror = () => {
-        setSpeaking(false);
-        toast.error("The voice introduction couldn't be loaded.");
-      };
-      audioRef.current = audio;
-    }
-    return audioRef.current;
-  }
-
-  async function speak(): Promise<boolean> {
-    const audio = getAudio();
-    try {
-      audio.currentTime = 0;
-      await audio.play();
-      setSpeaking(true);
-      return true;
-    } catch {
-      // Browser blocked autoplay without a user gesture.
-      return false;
-    }
-  }
-
-  function toggleSpeech() {
-    if (speaking) {
-      audioRef.current?.pause();
-      setSpeaking(false);
-      return;
-    }
-    void speak();
-  }
-
-  // Auto-play the introduction when a visitor lands on the page.
-  // If the browser blocks sound until a user gesture, play on the
-  // visitor's first tap/click/key press anywhere on the page instead.
-  useEffect(() => {
-    let cancelled = false;
-    const timer = window.setTimeout(async () => {
-      if (cancelled) return;
-      const played = await speak();
-      if (played || cancelled) return;
-      const onFirstGesture = () => {
-        void speak();
-        window.removeEventListener("pointerdown", onFirstGesture);
-        window.removeEventListener("keydown", onFirstGesture);
-      };
-      window.addEventListener("pointerdown", onFirstGesture);
-      window.addEventListener("keydown", onFirstGesture);
-    }, 600);
-    return () => {
-      cancelled = true;
-      window.clearTimeout(timer);
-      audioRef.current?.pause();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+function Portrait() {
   return (
-    <div className="relative mx-auto w-full max-w-sm">
-      <button
-        type="button"
-        onClick={toggleSpeech}
-        aria-label={speaking ? "Stop introduction" : "Play spoken introduction"}
-        aria-pressed={speaking}
-        className="group relative block w-full cursor-pointer overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-2xl transition-transform hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-      >
-        <img
-          src={profile}
-          alt="Aman Sharma, data analyst, in a navy blazer"
-          className="aspect-[4/5] w-full object-cover"
-        />
-        <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-primary/70 px-4 py-3 text-sm font-semibold text-primary-foreground backdrop-blur-sm transition-colors group-hover:bg-primary/85">
-          {speaking ? (
-            <>
-              <VolumeX className="h-4 w-4 animate-pulse" /> Speaking… tap to stop
-            </>
-          ) : (
-            <>
-              <Volume2 className="h-4 w-4" /> Tap to hear my introduction
-            </>
-          )}
-        </span>
-      </button>
+    <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+      <img
+        src={profile}
+        alt="Aman Sharma, data analyst, in a navy blazer"
+        className="aspect-[4/5] w-full object-cover"
+      />
     </div>
   );
 }
@@ -322,7 +237,7 @@ function Index() {
             </div>
 
           </div>
-          <SpeakingPortrait />
+          <Portrait />
         </div>
       </section>
 
