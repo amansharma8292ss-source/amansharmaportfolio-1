@@ -12,7 +12,8 @@ import {
   MapPin,
   Award,
   ArrowRight,
-  
+  Volume2,
+  VolumeX,
   CheckCircle2,
 } from "lucide-react";
 import { toast } from "sonner";
@@ -118,6 +119,63 @@ const achievements = [
   { value: "20+", label: "Hours saved monthly via Excel macros" },
   { value: "40%", label: "Reduction in report generation time" },
 ];
+
+const INTRO_SPEECH =
+  "Hi! I am Aman Sharma. I am a Data Analyst based in Lisbon, Portugal, specializing in Power BI dashboards, SQL, and Excel automation. I transform raw data into actionable business insights, and I am currently open to full-time roles and freelance projects across Portugal, Luxembourg, and Switzerland.";
+
+function SpeakingPortrait() {
+  const [speaking, setSpeaking] = useState(false);
+
+  function toggleSpeech() {
+    const synth = window.speechSynthesis;
+    if (!synth) {
+      toast.error("Your browser doesn't support speech.");
+      return;
+    }
+    if (speaking) {
+      synth.cancel();
+      setSpeaking(false);
+      return;
+    }
+    const utterance = new SpeechSynthesisUtterance(INTRO_SPEECH);
+    utterance.rate = 0.98;
+    utterance.pitch = 1;
+    utterance.onend = () => setSpeaking(false);
+    utterance.onerror = () => setSpeaking(false);
+    synth.cancel();
+    synth.speak(utterance);
+    setSpeaking(true);
+  }
+
+  return (
+    <div className="relative mx-auto w-full max-w-sm">
+      <button
+        type="button"
+        onClick={toggleSpeech}
+        aria-label={speaking ? "Stop introduction" : "Play spoken introduction"}
+        aria-pressed={speaking}
+        className="group relative block w-full cursor-pointer overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-2xl transition-transform hover:scale-[1.01] focus:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+      >
+        <img
+          src={profile.url}
+          alt="Aman Sharma, data analyst, in a navy blazer"
+          className="aspect-[4/5] w-full object-cover"
+        />
+        <span className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-2 bg-primary/70 px-4 py-3 text-sm font-semibold text-primary-foreground backdrop-blur-sm transition-colors group-hover:bg-primary/85">
+          {speaking ? (
+            <>
+              <VolumeX className="h-4 w-4 animate-pulse" /> Speaking… tap to stop
+            </>
+          ) : (
+            <>
+              <Volume2 className="h-4 w-4" /> Tap to hear my introduction
+            </>
+          )}
+        </span>
+      </button>
+    </div>
+  );
+}
 
 function SectionTitle({ eyebrow, title }: { eyebrow: string; title: string }) {
   return (
@@ -226,15 +284,7 @@ function Index() {
             </div>
 
           </div>
-          <div className="relative mx-auto w-full max-w-sm">
-            <div className="overflow-hidden rounded-3xl border border-primary-foreground/15 shadow-2xl">
-              <img
-                src={profile.url}
-                alt="Aman Sharma, data analyst, in a navy blazer"
-                className="aspect-[4/5] w-full object-cover"
-              />
-            </div>
-          </div>
+          <SpeakingPortrait />
         </div>
       </section>
 
