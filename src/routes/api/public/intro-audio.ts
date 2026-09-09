@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 const INTRO_TEXT =
-  "Hi! I am Aman Sharma. I'm a Data Analyst based in Lisbon, Portugal, specializing in Power BI dashboards, SQL, and Excel automation. I turn raw data into actionable business insights — and I'm currently open to full-time roles and freelance projects across Portugal, Luxembourg, and Switzerland.";
+  "Hi! I am Aman Sharma. I'm a Data Analyst based in Lisbon, Portugal, specializing in Power BI dashboards, SQL, and Excel automation. I turn raw data into actionable business insights — and I'm currently open to full-time roles and freelance projects all over the world.";
 
 // Cache the generated audio so identical text is synthesized only once.
 let cachedAudio: ArrayBuffer | null = null;

@@ -120,67 +120,69 @@ const achievements = [
   { value: "40%", label: "Reduction in report generation time" },
 ];
 
-const INTRO_SPEECH =
-  "Hi! I am Aman Sharma. I am a Data Analyst based in Lisbon, Portugal, specializing in Power BI dashboards, SQL, and Excel automation. I transform raw data into actionable business insights, and I am currently open to full-time roles and freelance projects across Portugal, Luxembourg, and Switzerland.";
-
 function SpeakingPortrait() {
   const [speaking, setSpeaking] = useState(false);
-  const attemptedRef = useRef(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  function speak() {
-    const synth = window.speechSynthesis;
-    if (!synth) {
-      toast.error("Your browser doesn't support speech.");
-      return;
+  function getAudio(): HTMLAudioElement {
+    if (!audioRef.current) {
+      const audio = new Audio("/api/public/intro-audio");
+      audio.preload = "auto";
+      audio.onended = () => setSpeaking(false);
+      audio.onerror = () => {
+        setSpeaking(false);
+        toast.error("The voice introduction couldn't be loaded.");
+      };
+      audioRef.current = audio;
     }
-    const utterance = new SpeechSynthesisUtterance(INTRO_SPEECH);
-    utterance.rate = 0.98;
-    utterance.pitch = 1;
-    utterance.onend = () => setSpeaking(false);
-    utterance.onerror = () => setSpeaking(false);
-    synth.cancel();
-    synth.speak(utterance);
-    setSpeaking(true);
+    return audioRef.current;
+  }
+
+  async function speak(): Promise<boolean> {
+    const audio = getAudio();
+    try {
+      audio.currentTime = 0;
+      await audio.play();
+      setSpeaking(true);
+      return true;
+    } catch {
+      // Browser blocked autoplay without a user gesture.
+      return false;
+    }
   }
 
   function toggleSpeech() {
     if (speaking) {
-      window.speechSynthesis?.cancel();
+      audioRef.current?.pause();
       setSpeaking(false);
       return;
     }
-    speak();
+    void speak();
   }
 
   // Auto-play the introduction when a visitor lands on the page.
-  // If the browser blocks speech until a user gesture, play on the
+  // If the browser blocks sound until a user gesture, play on the
   // visitor's first tap/click/key press anywhere on the page instead.
   useEffect(() => {
-    if (attemptedRef.current) return;
-    attemptedRef.current = true;
-
-    const trySpeak = () => {
-      if (!window.speechSynthesis) return;
-      speak();
-      // If speech was blocked (nothing started), wait for first gesture.
-      window.setTimeout(() => {
-        if (!window.speechSynthesis.speaking) {
-          const onFirstGesture = () => {
-            speak();
-            window.removeEventListener("pointerdown", onFirstGesture);
-            window.removeEventListener("keydown", onFirstGesture);
-          };
-          window.addEventListener("pointerdown", onFirstGesture);
-          window.addEventListener("keydown", onFirstGesture);
-        }
-      }, 400);
-    };
-
-    const timer = window.setTimeout(trySpeak, 600);
+    let cancelled = false;
+    const timer = window.setTimeout(async () => {
+      if (cancelled) return;
+      const played = await speak();
+      if (played || cancelled) return;
+      const onFirstGesture = () => {
+        void speak();
+        window.removeEventListener("pointerdown", onFirstGesture);
+        window.removeEventListener("keydown", onFirstGesture);
+      };
+      window.addEventListener("pointerdown", onFirstGesture);
+      window.addEventListener("keydown", onFirstGesture);
+    }, 600);
     return () => {
+      cancelled = true;
       window.clearTimeout(timer);
-      window.speechSynthesis?.cancel();
+      audioRef.current?.pause();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
