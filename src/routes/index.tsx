@@ -247,232 +247,57 @@ function DashboardSection() {
   return (
     <section id="dashboard" className="bg-surface py-20 sm:py-24">
       <div className="mx-auto max-w-6xl px-5">
-        <SectionTitle eyebrow="Live Demo" title="Data Analytics Dashboard" />
+        <SectionTitle eyebrow="Dashboard Projects" title="Interactive Power BI Dashboards" />
         <p className="-mt-6 mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          A snapshot of the kind of interactive dashboards I build — turning raw operational data
-          into clear, actionable metrics for decision-makers.
+          Three real dashboards I designed and built end to end — from data modeling to the final
+          interactive report.
         </p>
 
-        {/* KPI Cards */}
-        <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {dashboardStats.map((s) => (
-            <div
-              key={s.label}
-              className="card-elevated rounded-2xl border border-border bg-card p-6"
+        <div className="grid gap-8">
+          {dashboardProjects.map((p, i) => (
+            <article
+              key={p.title}
+              className={`card-elevated grid items-center gap-8 overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-8 lg:grid-cols-2 ${
+                i % 2 === 1 ? "lg:[&>a:first-child]:order-2" : ""
+              }`}
             >
-              <div className="flex items-center justify-between">
-                <div className="grid h-10 w-10 place-items-center rounded-lg bg-primary/15 text-primary">
-                  <s.icon className="h-5 w-5" />
-                </div>
-                <Activity className="h-4 w-4 text-muted-foreground" />
-              </div>
-              <p className="mt-4 text-3xl font-bold text-foreground">{s.value}</p>
-              <p className="mt-1 text-sm font-medium text-foreground">{s.label}</p>
-              <p className="mt-0.5 text-xs text-muted-foreground">{s.sublabel}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Charts Grid */}
-        <div className="grid gap-6 lg:grid-cols-3">
-          {/* Query Performance Trend */}
-          <div className="card-elevated rounded-2xl border border-border bg-card p-6 lg:col-span-2">
-            <div className="mb-4 flex items-center justify-between">
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block overflow-hidden rounded-xl border border-border"
+              >
+                <img
+                  src={p.image}
+                  alt={`${p.title} — Power BI dashboard preview`}
+                  loading="lazy"
+                  className="aspect-[16/10] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                />
+              </a>
               <div>
-                <h3 className="text-lg font-semibold text-foreground">Query Performance Trend</h3>
-                <p className="text-sm text-muted-foreground">Monthly queries vs. optimized</p>
-              </div>
-              <TrendingUp className="h-5 w-5 text-accent" />
-            </div>
-            <ResponsiveContainer width="100%" height={260}>
-              <AreaChart data={queryPerformanceData}>
-                <defs>
-                  <linearGradient id="gradQueries" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--chart-1)" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="var(--chart-1)" stopOpacity={0} />
-                  </linearGradient>
-                  <linearGradient id="gradOptimized" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="var(--chart-2)" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="var(--chart-2)" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                <XAxis
-                  dataKey="month"
-                  stroke="var(--muted-foreground)"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  stroke="var(--muted-foreground)"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "0.75rem",
-                    color: "var(--foreground)",
-                  }}
-                  labelStyle={{ color: "var(--foreground)" }}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="queries"
-                  stroke="var(--chart-1)"
-                  strokeWidth={2}
-                  fill="url(#gradQueries)"
-                  name="Total Queries"
-                />
-                <Area
-                  type="monotone"
-                  dataKey="optimized"
-                  stroke="var(--chart-2)"
-                  strokeWidth={2}
-                  fill="url(#gradOptimized)"
-                  name="Optimized"
-                />
-              </AreaChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Tool Distribution Pie */}
-          <div className="card-elevated rounded-2xl border border-border bg-card p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">Tool Usage</h3>
-                <p className="text-sm text-muted-foreground">Distribution by tool</p>
-              </div>
-              <Users className="h-5 w-5 text-accent" />
-            </div>
-            <ResponsiveContainer width="100%" height={260}>
-              <PieChart>
-                <Pie
-                  data={toolDistribution}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={50}
-                  outerRadius={85}
-                  paddingAngle={3}
-                  dataKey="value"
-                >
-                  {toolDistribution.map((entry) => (
-                    <Cell key={entry.name} fill={entry.fill} stroke="var(--card)" strokeWidth={2} />
-                  ))}
-                </Pie>
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "0.75rem",
-                    color: "var(--foreground)",
-                  }}
-                />
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="mt-3 flex flex-wrap gap-3">
-              {toolDistribution.map((t) => (
-                <div key={t.name} className="flex items-center gap-2 text-xs text-muted-foreground">
-                  <span
-                    className="h-2.5 w-2.5 rounded-full"
-                    style={{ backgroundColor: t.fill }}
-                  />
-                  {t.name}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Project Impact Bar Chart */}
-          <div className="card-elevated rounded-2xl border border-border bg-card p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">Project Impact</h3>
-                <p className="text-sm text-muted-foreground">Improvement percentage</p>
-              </div>
-              <BarChart3 className="h-5 w-5 text-accent" />
-            </div>
-            <ResponsiveContainer width="100%" height={260}>
-              <BarChart data={projectImpactData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                <XAxis
-                  dataKey="project"
-                  stroke="var(--muted-foreground)"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <YAxis
-                  stroke="var(--muted-foreground)"
-                  fontSize={12}
-                  tickLine={false}
-                  axisLine={false}
-                />
-                <Tooltip
-                  contentStyle={{
-                    backgroundColor: "var(--card)",
-                    border: "1px solid var(--border)",
-                    borderRadius: "0.75rem",
-                    color: "var(--foreground)",
-                  }}
-                  cursor={{ fill: "var(--muted)", fillOpacity: 0.3 }}
-                />
-                <Bar
-                  dataKey="impact"
-                  fill="var(--chart-1)"
-                  radius={[8, 8, 0, 0]}
-                  name="Impact %"
-                />
-              </BarChart>
-            </ResponsiveContainer>
-          </div>
-
-          {/* Skill Proficiency Radial */}
-          <div className="card-elevated rounded-2xl border border-border bg-card p-6 lg:col-span-2">
-            <div className="mb-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-lg font-semibold text-foreground">Skill Proficiency</h3>
-                <p className="text-sm text-muted-foreground">Self-assessed competency levels</p>
-              </div>
-              <Gauge className="h-5 w-5 text-accent" />
-            </div>
-            <div className="flex flex-col items-center gap-6 sm:flex-row">
-              <ResponsiveContainer width="100%" height={220}>
-                <RadialBarChart
-                  innerRadius="25%"
-                  outerRadius="100%"
-                  data={skillProficiency}
-                  startAngle={90}
-                  endAngle={-270}
-                >
-                  <RadialBar dataKey="value" cornerRadius={8} background={{ fill: "var(--muted)" }} />
-                  <Tooltip
-                    contentStyle={{
-                      backgroundColor: "var(--card)",
-                      border: "1px solid var(--border)",
-                      borderRadius: "0.75rem",
-                      color: "var(--foreground)",
-                    }}
-                  />
-                </RadialBarChart>
-              </ResponsiveContainer>
-              <div className="flex flex-col gap-3">
-                {skillProficiency.map((s) => (
-                  <div key={s.name} className="flex items-center gap-3">
+                <h3 className="text-2xl font-bold tracking-tight text-foreground">{p.title}</h3>
+                <p className="mt-4 leading-relaxed text-muted-foreground">{p.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
                     <span
-                      className="h-3 w-3 rounded-full"
-                      style={{ backgroundColor: s.fill }}
-                    />
-                    <span className="text-sm font-medium text-foreground">{s.name}</span>
-                    <span className="text-sm text-muted-foreground">{s.value}%</span>
-                  </div>
-                ))}
+                      key={t}
+                      className="rounded-full border border-border bg-muted px-3 py-1 text-xs font-medium text-muted-foreground"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={p.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
+                >
+                  {p.linkLabel} <ExternalLink className="h-4 w-4" />
+                </a>
               </div>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
