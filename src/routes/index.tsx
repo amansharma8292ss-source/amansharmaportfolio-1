@@ -13,28 +13,14 @@ import {
   Award,
   ArrowRight,
   CheckCircle2,
-  TrendingUp,
-  Users,
-  Gauge,
-  Activity,
+  ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
-import {
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  AreaChart,
-  Area,
-  PieChart,
-  Pie,
-  Cell,
-  RadialBarChart,
-  RadialBar,
-} from "recharts";
+import fifaDashboard from "@/assets/fifa-dashboard.png.asset.json";
+import amazonDashboard from "@/assets/amazon-dashboard.jpg.asset.json";
+import amazonDashboardPdf from "@/assets/amazon-dashboard.pdf.asset.json";
+import iplDashboard from "@/assets/ipl-dashboard.jpg.asset.json";
+import iplDashboardPdf from "@/assets/ipl-dashboard.pdf.asset.json";
 const profile = "/profile_2.jpg";
 
 import { Nav } from "@/components/portfolio/Nav";
