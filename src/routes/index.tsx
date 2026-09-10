@@ -124,59 +124,33 @@ const achievements = [
   { value: "40%", label: "Reduction in report generation time" },
 ];
 
-const skillProficiency = [
-  { name: "Power BI", value: 92, fill: "var(--chart-1)" },
-  { name: "SQL", value: 88, fill: "var(--chart-2)" },
-  { name: "Excel", value: 95, fill: "var(--chart-3)" },
-  { name: "Tableau", value: 70, fill: "var(--chart-4)" },
-];
-
-const projectImpactData = [
-  { project: "Deloitte", impact: 15 },
-  { project: "TATA", impact: 40 },
-  { project: "MySQL", impact: 30 },
-];
-
-const queryPerformanceData = [
-  { month: "Jan", queries: 120, optimized: 45 },
-  { month: "Feb", queries: 150, optimized: 60 },
-  { month: "Mar", queries: 180, optimized: 78 },
-  { month: "Apr", queries: 200, optimized: 92 },
-  { month: "May", queries: 230, optimized: 110 },
-  { month: "Jun", queries: 260, optimized: 135 },
-];
-
-const toolDistribution = [
-  { name: "Power BI", value: 35, fill: "var(--chart-1)" },
-  { name: "SQL", value: 28, fill: "var(--chart-2)" },
-  { name: "Excel", value: 22, fill: "var(--chart-3)" },
-  { name: "Python", value: 15, fill: "var(--chart-4)" },
-];
-
-const dashboardStats = [
+const dashboardProjects = [
   {
-    icon: BarChart3,
-    label: "Dashboards Built",
-    value: "15+",
-    sublabel: "Interactive Power BI reports",
+    title: "FIFA World Cup Analytics 1930–2026",
+    image: fifaDashboard.url,
+    link: fifaDashboard.url,
+    linkLabel: "View full dashboard",
+    description:
+      "A full tournament intelligence dashboard covering 22 World Cups, 964 matches and 2,720 goals. It tracks the most successful nations, average attendance and goals evolution since 1930, and previews the 2026 edition with matches by stage, stadium distribution and the full match schedule timeline. Six slicers (stage, stadium, year, host country, match date, champion) make every visual fully interactive.",
+    tags: ["Power BI", "DAX", "Data Modeling", "Sports Analytics"],
   },
   {
-    icon: Database,
-    label: "Queries Optimized",
-    value: "50+",
-    sublabel: "30% avg performance gain",
+    title: "Amazon Sales Performance Dashboard",
+    image: amazonDashboard.url,
+    link: amazonDashboardPdf.url,
+    linkLabel: "View full dashboard (PDF)",
+    description:
+      "An executive retail performance dashboard tracking 2K customers, 2.5K orders and 261M in sales with 5.2% growth and a 4.27 average rating. It breaks down quantity by category, orders by payment method, delivery days vs. seller rating, monthly sales trends, top products and sales by category across four regions — with category, month and region filters for drill-down analysis.",
+    tags: ["Power BI", "Retail Analytics", "KPI Tracking", "Trend Analysis"],
   },
   {
-    icon: TrendingUp,
-    label: "Cost Reduction",
-    value: "15%",
-    sublabel: "Deloitte simulation result",
-  },
-  {
-    icon: Gauge,
-    label: "Time Saved",
-    value: "40%",
-    sublabel: "Faster report generation",
+    title: "IPL Analysis 2008–2025",
+    image: iplDashboard.url,
+    link: iplDashboardPdf.url,
+    linkLabel: "View full dashboard (PDF)",
+    description:
+      "A season-deep cricket analytics dashboard covering 74 matches across 10 teams and 14 venues. It highlights the 2025 season winner and runner-up, Orange Cap and Purple Cap leaders, highest fours and sixes, and a complete points table with played, won, lost and net-result breakdowns per franchise.",
+    tags: ["Power BI", "Sports Analytics", "Data Storytelling", "Visual Design"],
   },
 ];
 
