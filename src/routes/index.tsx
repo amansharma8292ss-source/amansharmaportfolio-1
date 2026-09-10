@@ -21,7 +21,7 @@ import amazonDashboard from "@/assets/amazon-dashboard.jpg.asset.json";
 import amazonDashboardPdf from "@/assets/amazon-dashboard.pdf.asset.json";
 import iplDashboard from "@/assets/ipl-dashboard.jpg.asset.json";
 import iplDashboardPdf from "@/assets/ipl-dashboard.pdf.asset.json";
-const profile = "/profile_2.jpg";
+import profileAsset from "@/assets/aman-profile.jpg.asset.json";
 
 import { Nav } from "@/components/portfolio/Nav";
 
@@ -158,8 +158,8 @@ function Portrait() {
   return (
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
       <img
-        src={profile}
-        alt="Aman Sharma, data analyst, in a navy blazer"
+        src={profileAsset.url}
+        alt="Aman Sharma, data analyst, in a navy business suit with arms crossed"
         className="aspect-[4/5] w-full object-cover"
       />
     </div>
@@ -348,8 +348,8 @@ function Index() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="overflow-hidden rounded-2xl bg-surface">
             <img
-              src={profile}
-              alt="Portrait of Aman Sharma"
+              src={profileAsset.url}
+              alt="Aman Sharma, data analyst, in a navy business suit with arms crossed"
               loading="lazy"
               className="aspect-[4/5] w-full object-cover"
             />
