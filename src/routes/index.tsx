@@ -165,7 +165,7 @@ function Portrait() {
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
       <img
         src={profileAsset.url}
-        alt="Aman Sharma, data analyst, in a navy business suit with arms crossed"
+        alt="Aman Sharma in a grey three-piece suit with a maroon tie, standing in a modern office"
         className="aspect-[4/5] w-full object-cover"
       />
     </div>
