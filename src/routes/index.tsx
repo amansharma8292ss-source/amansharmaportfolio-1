@@ -355,8 +355,8 @@ function Index() {
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[0.8fr_1.2fr]">
           <div className="overflow-hidden rounded-2xl bg-surface">
             <img
-              src="/assets/images/profile_2.jpg"
-              alt="Aman Sharma, data analyst, standing in a gray business suit"
+              src={aboutAsset.url}
+              alt="Aman Sharma in a navy business suit with arms crossed, standing in a bright office"
               loading="lazy"
               className="aspect-[4/5] w-full object-cover"
             />
