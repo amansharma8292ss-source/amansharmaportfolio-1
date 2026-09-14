@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Power BI, SQL and Excel expertise turning raw data into actionable business insights. Based in Lisbon, Portugal.",
+          "Power BI, SQL and Excel expertise turning raw data into actionable business insights.",
       },
       { property: "og:type", content: "profile" },
       { name: "twitter:card", content: "summary_large_image" },
