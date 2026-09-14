@@ -22,7 +22,7 @@ import amazonDashboard from "@/assets/amazon-dashboard.jpg.asset.json";
 import amazonDashboardPdf from "@/assets/amazon-dashboard.pdf.asset.json";
 import iplDashboard from "@/assets/ipl-dashboard.jpg.asset.json";
 import iplDashboardPdf from "@/assets/ipl-dashboard.pdf.asset.json";
-import profileAsset from "@/assets/aman-profile.jpg.asset.json";
+import profileAsset from "@/assets/aman-hero.jpg.asset.json";
 
 import { Nav } from "@/components/portfolio/Nav";
 
