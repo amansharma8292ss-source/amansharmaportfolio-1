@@ -74,6 +74,11 @@ const skills = [
     title: "Tools",
     items: ["Microsoft Office Suite", "Google Workspace", "Git", "Jupyter Notebook & Anaconda"],
   },
+  {
+    icon: Sparkles,
+    title: "AI Automation",
+    items: ["AI-powered Excel insights", "ChatGPT / Copilot for analytics", "Automated reporting workflows", "Prompt engineering for data tasks"],
+  },
 ];
 
 const certifications = [
