@@ -6,6 +6,7 @@ import {
   Table2,
   Workflow,
   Wrench,
+  Sparkles,
   Mail,
   Phone,
   Linkedin,
