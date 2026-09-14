@@ -6,6 +6,7 @@ import {
   Table2,
   Workflow,
   Wrench,
+  Sparkles,
   Mail,
   Phone,
   Linkedin,
@@ -21,7 +22,7 @@ import amazonDashboard from "@/assets/amazon-dashboard.jpg.asset.json";
 import amazonDashboardPdf from "@/assets/amazon-dashboard.pdf.asset.json";
 import iplDashboard from "@/assets/ipl-dashboard.jpg.asset.json";
 import iplDashboardPdf from "@/assets/ipl-dashboard.pdf.asset.json";
-import profileAsset from "@/assets/aman-profile.jpg.asset.json";
+import profileAsset from "@/assets/aman-hero.jpg.asset.json";
 
 import { Nav } from "@/components/portfolio/Nav";
 
@@ -72,6 +73,11 @@ const skills = [
     icon: Wrench,
     title: "Tools",
     items: ["Microsoft Office Suite", "Google Workspace", "Git", "Jupyter Notebook & Anaconda"],
+  },
+  {
+    icon: Sparkles,
+    title: "AI Automation",
+    items: ["AI-powered Excel insights", "ChatGPT / Copilot for analytics", "Automated reporting workflows", "Prompt engineering for data tasks"],
   },
 ];
 
@@ -159,7 +165,7 @@ function Portrait() {
     <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
       <img
         src={profileAsset.url}
-        alt="Aman Sharma, data analyst, in a navy business suit with arms crossed"
+        alt="Aman Sharma in a grey three-piece suit with a maroon tie, standing in a modern office"
         className="aspect-[4/5] w-full object-cover"
       />
     </div>
