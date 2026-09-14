@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Portfolio of Aman Sharma, Data Analyst in Lisbon specializing in Power BI dashboards, SQL query optimization and Excel automation. EU work authorized.",
+          "Portfolio of Aman Sharma, Data Analyst specializing in Power BI dashboards, SQL query optimization and Excel automation.",
       },
       { property: "og:title", content: "Aman Sharma — Data Analyst & Power BI Specialist" },
       {
