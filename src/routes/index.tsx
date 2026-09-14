@@ -320,10 +320,7 @@ function Index() {
       <section className="hero-gradient relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-36">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="min-w-0">
-            <p className="inline-flex rounded-full border border-foreground/25 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-foreground/85">
-              Based in Lisbon, Portugal · EU Work Authorized
-            </p>
-            <h1 className="mt-6 text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
+            <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
               Data Analyst · Business Intelligence Specialist · SQL &amp; Power BI Expert
             </h1>
             <p className="mt-5 max-w-xl text-lg text-foreground/85">
