@@ -473,7 +473,7 @@ function Index() {
                 key={a.label}
                 className="rounded-2xl border border-foreground/15 bg-foreground/5 p-7"
               >
-                <p className="text-4xl font-bold text-foreground">{a.value}</p>
+                <p className="text-4xl font-bold text-primary">{a.value}</p>
                 <p className="mt-2 text-sm text-foreground/80">{a.label}</p>
               </div>
             ))}
