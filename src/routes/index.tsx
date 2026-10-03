@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
   BarChart3,
+  Code2,
   Database,
   Table2,
   Workflow,
