@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
   BarChart3,
+  Code2,
   Database,
   Table2,
   Workflow,
@@ -74,6 +75,11 @@ const skills = [
     icon: Wrench,
     title: "Tools",
     items: ["Microsoft Office Suite", "Google Workspace", "Git", "Jupyter Notebook & Anaconda"],
+  },
+  {
+    icon: Code2,
+    title: "Python for Analytics",
+    items: ["Pandas & NumPy", "Data Cleaning with Python", "Matplotlib & Seaborn", "Automation Scripts"],
   },
   {
     icon: Sparkles,
@@ -368,7 +374,7 @@ function Index() {
               passionate about transforming complex datasets into compelling business narratives.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              {["English C1/C2", "Portuguese B1/B2", "Hindi Native", "Currently mastering MySQL"].map(
+              {["English C1/C2", "Portuguese B1/B2", "Hindi Native"].map(
                 (t) => (
                   <span
                     key={t}
