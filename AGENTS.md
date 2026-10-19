@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Portfolio colors and surfaces are defined through semantic tokens in src/styles.css so site-wide themes remain consistent.
+- Dashboard entries use managed asset pointers for preview images and full-size links so uploaded reports remain outside the source repository.
