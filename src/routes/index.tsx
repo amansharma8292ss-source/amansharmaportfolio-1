@@ -26,6 +26,9 @@ import iplDashboardPdf from "@/assets/ipl-dashboard.pdf.asset.json";
 import profileAsset from "@/assets/aman-hero.jpg.asset.json";
 import aboutAsset from "@/assets/aman-about.jpg.asset.json";
 
+import sbiDashboard from "@/assets/sbi-loan-dashboard.jpeg.asset.json";
+import { Button } from "@/components/ui/button";
+
 import { Nav } from "@/components/portfolio/Nav";
 
 export const Route = createFileRoute("/")({
@@ -139,6 +142,15 @@ const achievements = [
 
 const dashboardProjects = [
   {
+    title: "SBI Loan Portfolio Analysis",
+    image: sbiDashboard.url,
+    link: sbiDashboard.url,
+    linkLabel: "View full dashboard",
+    description:
+      "A banking analytics dashboard examining 38.6K loan applications, ₹4,532 Cr in funded loans, an 86.4% approval rate and a 4.8% charge-off rate. It compares application and funding trends from 2018 to 2023, loan purposes, repayment status, approval rates by employment type and loan amounts by credit grade. Filters cover year, state, loan purpose, term, employment type and home ownership.",
+    tags: ["Power BI", "Banking Analytics", "Loan Portfolio", "Risk Analysis"],
+  },
+  {
     title: "FIFA World Cup Analytics 1930–2026",
     image: fifaDashboard.url,
     link: fifaDashboard.url,
@@ -169,7 +181,7 @@ const dashboardProjects = [
 
 function Portrait() {
   return (
-    <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-3xl border border-white/10 shadow-2xl">
+    <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-lg border border-border shadow-sm">
       <img
         src={profileAsset.url}
         alt="Aman Sharma in a grey three-piece suit with a maroon tie, standing in a modern office"
@@ -209,7 +221,7 @@ function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="rounded-2xl border border-border bg-card p-6 sm:p-8">
+    <form onSubmit={onSubmit} className="rounded-lg border border-border bg-card p-6 sm:p-8">
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm font-medium text-foreground">
           Name
@@ -241,12 +253,12 @@ function ContactForm() {
           placeholder="Tell me about the role or project…"
         />
       </label>
-      <button
+      <Button
         type="submit"
         className="mt-5 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
       >
         Send message <ArrowRight className="h-4 w-4" />
-      </button>
+      </Button>
       {sent && (
         <p className="mt-3 inline-flex items-center gap-2 text-sm text-muted-foreground">
           <CheckCircle2 className="h-4 w-4 text-accent" /> Your email app should now be open.
@@ -262,7 +274,7 @@ function DashboardSection() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionTitle eyebrow="Dashboard Projects" title="Interactive Power BI Dashboards" />
         <p className="-mt-6 mb-10 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Three real dashboards I designed and built end to end — from data modeling to the final
+          Four real dashboards I designed and built end to end — from data modeling to the final
           interactive report.
         </p>
 
@@ -270,7 +282,7 @@ function DashboardSection() {
           {dashboardProjects.map((p, i) => (
             <article
               key={p.title}
-              className={`card-elevated grid items-center gap-8 overflow-hidden rounded-2xl border border-border bg-card p-6 sm:p-8 lg:grid-cols-2 ${
+              className={`card-elevated grid items-center gap-8 overflow-hidden rounded-lg border border-border bg-card p-6 sm:p-8 lg:grid-cols-2 ${
                 i % 2 === 1 ? "lg:[&>a:first-child]:order-2" : ""
               }`}
             >
@@ -278,13 +290,13 @@ function DashboardSection() {
                 href={p.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block overflow-hidden rounded-xl border border-border"
+                className="group block overflow-hidden rounded-lg border border-border"
               >
                 <img
                   src={p.image}
                   alt={`${p.title} — Power BI dashboard preview`}
                   loading="lazy"
-                  className="aspect-[16/10] w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.03]"
+                  className="aspect-[16/10] w-full bg-surface object-contain transition-transform duration-300 group-hover:scale-[1.03]"
                 />
               </a>
               <div>
@@ -300,14 +312,15 @@ function DashboardSection() {
                     </span>
                   ))}
                 </div>
+                <Button asChild className="mt-6 h-auto whitespace-normal px-5 py-2.5">
                 <a
                   href={p.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition-opacity hover:opacity-90"
                 >
                   {p.linkLabel} <ExternalLink className="h-4 w-4" />
                 </a>
+                </Button>
               </div>
             </article>
           ))}
@@ -326,9 +339,11 @@ function Index() {
       <section className="hero-gradient relative overflow-hidden pb-20 pt-28 sm:pb-28 sm:pt-36">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="min-w-0">
-            <h1 className="text-3xl font-bold leading-tight tracking-tight text-foreground sm:text-5xl">
-              Data Analyst · Business Intelligence Specialist · SQL &amp; Power BI Expert
-            </h1>
+            <h1 className="text-4xl font-bold leading-tight text-foreground sm:text-5xl">Aman Sharma</h1>
+            <p className="mt-4 text-xl font-semibold leading-relaxed text-primary sm:text-2xl">
+              Data Analyst · Business Intelligence Specialist
+            </p>
+            <p className="mt-2 text-sm font-medium text-muted-foreground">SQL &amp; Power BI Expert</p>
             <p className="mt-5 max-w-xl text-lg text-foreground/85">
               Transforming raw data into actionable business insights. Available for freelance
               projects and full-time roles.
@@ -356,7 +371,7 @@ function Index() {
       {/* ABOUT */}
       <section id="about" className="py-20 sm:py-24">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="overflow-hidden rounded-2xl bg-surface">
+          <div className="overflow-hidden rounded-lg bg-surface">
             <img
               src={aboutAsset.url}
               alt="Aman Sharma in a navy business suit with arms crossed, standing in a bright office"
@@ -395,8 +410,8 @@ function Index() {
           <SectionTitle eyebrow="Capabilities" title="Technical Expertise" />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {skills.map((s) => (
-              <div key={s.title} className="card-elevated rounded-2xl bg-card p-6">
-                <div className="grid h-11 w-11 place-items-center rounded-xl bg-primary text-primary-foreground">
+              <div key={s.title} className="card-elevated rounded-lg bg-card p-6">
+                <div className="grid h-11 w-11 place-items-center rounded-lg bg-primary text-primary-foreground">
                   <s.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-foreground">{s.title}</h3>
@@ -422,7 +437,7 @@ function Index() {
             {certifications.map((c) => (
               <div
                 key={c.title}
-                className="card-elevated rounded-2xl border border-border bg-card p-7"
+                className="card-elevated rounded-lg border border-border bg-card p-7"
               >
                 <Award className="h-7 w-7 text-accent" />
                 <h3 className="mt-5 text-lg font-semibold text-foreground">{c.title}</h3>
@@ -440,7 +455,7 @@ function Index() {
           <SectionTitle eyebrow="Selected work" title="Portfolio Projects" />
           <div className="grid gap-6 lg:grid-cols-3">
             {projects.map((p) => (
-              <article key={p.title} className="card-elevated rounded-2xl bg-card p-7">
+              <article key={p.title} className="card-elevated rounded-lg bg-card p-7">
                 <h3 className="text-xl font-semibold text-foreground">{p.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{p.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
@@ -477,7 +492,7 @@ function Index() {
             {achievements.map((a) => (
               <div
                 key={a.label}
-                className="rounded-2xl border border-foreground/15 bg-foreground/5 p-7"
+                className="rounded-lg border border-foreground/15 bg-foreground/5 p-7"
               >
                 <p className="text-4xl font-bold text-primary">{a.value}</p>
                 <p className="mt-2 text-sm text-foreground/80">{a.label}</p>
